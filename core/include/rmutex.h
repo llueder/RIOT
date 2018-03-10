@@ -21,7 +21,12 @@
 #ifndef RMUTEX_H
 #define RMUTEX_H
 
+#ifdef __cplusplus
+#include <atomic>
+using namespace std;
+#else
 #include <stdatomic.h>
+#endif
 
 #include "mutex.h"
 #include "kernel_types.h"
@@ -56,7 +61,17 @@ typedef struct rmutex_t {
      * @internal
      */
     atomic_int_least16_t owner;
+
+#ifdef __cplusplus
+    rmutex_t& operator=(const rmutex_t& other){
+        mutex = other.mutex;
+        refcount = other.refcount;
+        atomic_store(&owner,atomic_load(&other.owner));
+        return *this;
+    }
+#endif
 } rmutex_t;
+
 
 /**
  * @brief Static initializer for rmutex_t.
