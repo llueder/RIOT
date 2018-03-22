@@ -731,9 +731,9 @@ static inline unsigned coap_get_total_hdr_len(coap_pkt_t *pkt)
  *
  * @returns     raw message code
  */
-static inline uint8_t coap_code(unsigned class, unsigned detail)
+static inline uint8_t coap_code(unsigned code_class, unsigned detail)
 {
-    return (class << 5) | detail;
+    return (code_class << 5) | detail;
 }
 
 /**
