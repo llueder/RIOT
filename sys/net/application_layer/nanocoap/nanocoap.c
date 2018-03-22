@@ -51,7 +51,7 @@ int coap_parse(coap_pkt_t *pkt, uint8_t *buf, size_t len)
     coap_hdr_t *hdr = (coap_hdr_t *)buf;
     pkt->hdr = hdr;
 
-    uint8_t *pkt_pos = hdr->data;
+    uint8_t *pkt_pos = ((uint8_t*)&(hdr->id))+2;
     uint8_t *pkt_end = buf + len;
 
     pkt->payload = NULL;
@@ -377,7 +377,7 @@ ssize_t coap_build_hdr(coap_hdr_t *hdr, unsigned type, uint8_t *token, size_t to
     hdr->id = htons(id);
 
     if (token_len) {
-        memcpy(hdr->data, token, token_len);
+        memcpy(((uint8_t*)&(hdr->id))+2, token, token_len);
     }
 
     return sizeof(coap_hdr_t) + token_len;

@@ -475,7 +475,7 @@ static void _find_req_memo(gcoap_request_memo_t **memo_ptr, coap_pkt_t *src_pdu,
         }
 
         if (coap_get_token_len(memo_pdu) == cmplen) {
-            memo_pdu->token = &memo_pdu->hdr->data[0];
+            memo_pdu->token = ((uint8_t*)&(memo_pdu->hdr->id)) + 2;
             if ((memcmp(src_pdu->token, memo_pdu->token, cmplen) == 0)
                     && _endpoints_equal(&memo->remote_ep, remote)) {
                 *memo_ptr = memo;
