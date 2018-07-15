@@ -438,11 +438,11 @@ ssize_t sock_udp_recv(sock_udp_t *sock, void *data, size_t max_len,
 ssize_t sock_udp_send(sock_udp_t *sock, const void *data, size_t len,
                       const sock_udp_ep_t *remote);
 
-#include "sock_types.h"
-
 #ifdef __cplusplus
 }
 #endif
+
+#include "sock_types.h"
 
 #endif /* NET_SOCK_UDP_H */
 /** @} */
