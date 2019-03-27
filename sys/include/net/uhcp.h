@@ -78,6 +78,17 @@ typedef struct __attribute__((packed)) {
     uint8_t prefix[];       /**< contains the assigned prefix */
 } uhcp_push_t;
 
+/**
+ * @brief   Get the start of prefix after the header
+ *
+ * @param[in]   pkt   Packet in contiguous memory
+ *
+ * @returns     pointer to first byte of the prefix after the header
+ */
+inline static uhcp_push_prefix_ptr(uhcp_push_t *pkt){
+	return ((uint8_t*)pkt + sizeof(uhcp_push_t));
+}
+
 /** @brief typedef for interface handle */
 typedef unsigned uhcp_iface_t;
 
