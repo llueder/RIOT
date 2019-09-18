@@ -85,7 +85,7 @@ typedef struct __attribute__((packed)) {
  * @returns     pointer to first byte of the prefix after the header
  */
 inline static uhcp_push_prefix_ptr(uhcp_push_t *pkt){
-	return ((uint8_t*)pkt + sizeof(uhcp_push_t));
+    return ((uint8_t*)pkt + sizeof(uhcp_push_t));
 }
 
 /** @brief typedef for interface handle */
